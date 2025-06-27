@@ -1,0 +1,24 @@
+{
+  "name": "Pixel Call Recorder - Android Dev",
+  "image": "mcr.microsoft.com/devcontainers/base:noble",
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {},
+    "ghcr.io/devcontainers/features/node:1": {},
+    "ghcr.io/meaningful-ooo/devcontainer-features/fish:1": {},
+    "ghcr.io/larsnieuwenhuizen/features/neovim:0": {},
+    "ghcr.io/devcontainers/features/git:1": {}
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "saoudrizwan.claude-dev",
+        "coolcline.coolcline", 
+        "RooVeterinaryInc.roo-cline",
+        "google.android-ios-emulator",
+        "vscjava.vscode-java-pack",
+        "vscode-gradle.vscode-gradle"
+      ]
+    }
+  },
+  "postCreateCommand": "apt-get update && apt-get install -y openjdk-17-jdk && bash .devcontainer/setup-android.sh"
+}
