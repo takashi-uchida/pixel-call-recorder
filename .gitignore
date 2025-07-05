@@ -14,6 +14,13 @@ local.properties
 gradle-app.setting
 !gradle-wrapper.jar
 
+# ビルド生成物のJAR
+**/build/libs/*.jar
+**/build/outputs/**/*.jar
+
+# Gradleキャッシュ内の不要JAR
+.gradle/**/*.jar
+
 # IDE
 .idea/
 *.iml
