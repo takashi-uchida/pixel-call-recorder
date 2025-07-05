@@ -14,8 +14,19 @@ class MainViewModel(
     private val _uiState = MutableStateFlow<MainUiState>(MainUiState.Loading)
     val uiState: StateFlow<MainUiState> = _uiState.asStateFlow()
 
+    private val _isRecording = MutableStateFlow(false)
+    val isRecording: StateFlow<Boolean> = _isRecording.asStateFlow()
+
     init {
         checkPermissions()
+    }
+
+    fun startRecording() {
+        _isRecording.value = true
+    }
+
+    fun stopRecording() {
+        _isRecording.value = false
     }
 
     fun checkPermissions() {
@@ -30,7 +41,6 @@ class MainViewModel(
 
     fun requestPermissions() {
         permissionManager.requestPermissions()
-        // 権限リクエスト後に再度チェック
         viewModelScope.launch {
             checkPermissions()
         }
