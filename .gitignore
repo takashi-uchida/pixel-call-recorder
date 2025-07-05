@@ -1,44 +1,16 @@
-# Android関連
-*.apk
-*.ap_
-*.dex
-*.class
-build/
-captures/
-.externalNativeBuild
-.cxx
-local.properties
-
-# Gradle
-.gradle/
-gradle-app.setting
-!gradle-wrapper.jar
-
-# ビルド生成物のJAR
-**/build/libs/*.jar
-**/build/outputs/**/*.jar
-
-# Gradleキャッシュ内の不要JAR
-.gradle/**/*.jar
-
-# IDE
-.idea/
 *.iml
-*.iws
-*.ipr
-.navigation/
-dist/
-
-# ビルドキャッシュ
-**/build/
-
-# ログ/レポート
-**/*.log
-/reports/
-
-# 環境変数
-.env
-
-# その他
+.gradle
+/local.properties
+/.idea/
 .DS_Store
+/build
+*/build/
+/captures
+.cxx/
+
+# Keystore file
+*.jks
 *.keystore
+
+# Google Services file
+google-services.json
