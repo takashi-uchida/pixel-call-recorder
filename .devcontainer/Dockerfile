@@ -9,7 +9,7 @@ RUN apt-get update && \
     apt-get install -y \
         wget \
         unzip \
-        openjdk-21-jdk-headless \
+        openjdk-17-jdk-headless \
         build-essential \
         git \
         curl && \
@@ -54,10 +54,10 @@ RUN cd /tmp && \
 # 環境変数を bashrc と profile に追加
 RUN echo "export ANDROID_HOME=$ANDROID_HOME" >> ~/.bashrc && \
     echo "export PATH=\$PATH:\$ANDROID_HOME/cmdline-tools/latest/bin:\$ANDROID_HOME/platform-tools:\$ANDROID_HOME/emulator" >> ~/.bashrc && \
-    echo "export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-arm64" >> ~/.bashrc && \
+    echo "export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-arm64" >> ~/.bashrc && \
     echo "export ANDROID_HOME=$ANDROID_HOME" >> ~/.profile && \
     echo "export PATH=\$PATH:\$ANDROID_HOME/cmdline-tools/latest/bin:\$ANDROID_HOME/platform-tools:\$ANDROID_HOME/emulator" >> ~/.profile && \
-    echo "export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-arm64" >> ~/.profile
+    echo "export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-arm64" >> ~/.profile
 
 # 作業ディレクトリ設定
 WORKDIR /workspaces/pixel-call-recorder
