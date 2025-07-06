@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Pixel Call Recorder</string>
+    <string name="permission_required_title">権限が必要です</string>
+    <string name="permission_required_message">通話録音機能を使用するには、マイクとストレージの権限が必要です</string>
+    <string name="allow_permission">権限を許可</string>
+    <string name="deny_permission">拒否</string>
+    <string name="recording_in_progress">録音中</string>
+    <string name="no_recordings">録音がありません</string>
+</resources>
