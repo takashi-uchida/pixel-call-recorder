@@ -1,0 +1,19 @@
+*.iml
+.gradle
+/local.properties
+/.idea/
+.DS_Store
+/build
+*/build/
+/captures
+.cxx/
+
+# Keystore file
+*.jks
+*.keystore
+
+# Google Services file
+google-services.json
+
+# Gradle Wrapper
+gradle/wrapper/gradle-8.0-bin.zip
