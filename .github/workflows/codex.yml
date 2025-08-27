@@ -1,3 +1,4 @@
+# .github/workflows/on-comment.yml（呼び出し側リポジトリ）
 name: On Comment
 on:
   issue_comment:
@@ -5,6 +6,10 @@ on:
 
 jobs:
   resolve:
+    permissions:
+      contents: read
+      issues: write
+      pull-requests: write
     runs-on: ubuntu-latest
     steps:
       - name: Run Codex action
