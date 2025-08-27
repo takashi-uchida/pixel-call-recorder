@@ -24,7 +24,7 @@ jobs:
       macro: ${{ vars.OPENHANDS_MACRO || '@openhands-agent' }}
       max_iterations: ${{ fromJson(vars.OPENHANDS_MAX_ITER || 50) }}
       base_container_image: ${{ vars.OPENHANDS_BASE_CONTAINER_IMAGE || '' }}
-      LLM_MODEL: ${{ vars.LLM_MODEL || 'openrouter/deepseek/deepseek-chat-v3-0324:free' }}
+      LLM_MODEL: ${{ vars.LLM_MODEL || 'openrouter/qwen/qwen3-coder' }}
       target_branch: ${{ vars.TARGET_BRANCH || 'main' }}
       runner: ${{ vars.TARGET_RUNNER }}
     secrets:
