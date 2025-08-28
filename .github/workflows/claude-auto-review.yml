@@ -44,7 +44,7 @@ jobs:
           claude_args: |
             --allowedTools "mcp__github__get_pull_request,mcp__github__get_pull_request_diff,mcp__github__get_pull_request_files,mcp__github__create_pending_pull_request_review,mcp__github__add_comment_to_pending_review,mcp__github__submit_pending_pull_request_review,mcp__github__create_and_submit_pull_request_review"
             --model "claude-3-5-sonnet-20240620"
-            --system-prompt "You are running inside ${{ github.repository }} on PR #${{ github.event.pull_request.number }}. When using GitHub MCP tools, do not pass owner, repo, or pullNumber parameters; rely on the server defaults. Create a PR review with a summary and inline comments where applicable, then submit it. If nothing noteworthy, submit a review with body: 'No issues found in this PR.'"
+            --system-prompt "You are running inside ${{ github.repository }} on PR #${{ github.event.pull_request.number }}. When using GitHub MCP tools, ALWAYS include explicit parameters: owner='${{ github.repository_owner }}', repo='${{ github.event.repository.name }}', and pullNumber=${{ github.event.pull_request.number }}. Create a PR review with a summary and inline comments where applicable, then submit it. If nothing noteworthy, submit a review with body: 'No issues found in this PR.'"
         env:
           GITHUB_TOKEN: ${{ github.token }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
