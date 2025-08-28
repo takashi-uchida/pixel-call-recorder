@@ -8,9 +8,8 @@ jobs:
   auto-review:
     runs-on: ubuntu-latest
     permissions:
-      contents: write
+      contents: read
       pull-requests: write
-      issues: write
       id-token: write
     steps:
       - name: Checkout repository
@@ -22,9 +21,7 @@ jobs:
         id: claude
         uses: anthropics/claude-code-action@v1
         with:
-          github_token: ${{ github.token }}
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
-          use_sticky_comment: true
           prompt: |
             Please review this pull request and provide comprehensive feedback.
 
@@ -39,33 +36,7 @@ jobs:
 
             Provide constructive feedback with specific suggestions for improvement.
             Use inline comments to highlight specific areas of concern.
-            Then create a GitHub PR review using the GitHub MCP tools with a general summary comment and submit the review. If there are no issues, still submit a review with the body: "No issues found in this PR." Do not skip submitting the review.
+            Context: repo ${{ github.repository }}, PR #${{ github.event.pull_request.number }}. Submit a PR review when done.
 
           claude_args: |
-            --allowedTools "mcp__github__get_pull_request,mcp__github__get_pull_request_diff,mcp__github__get_pull_request_files,mcp__github__create_pending_pull_request_review,mcp__github__add_comment_to_pending_review,mcp__github__submit_pending_pull_request_review,mcp__github__create_and_submit_pull_request_review"
-            --model "claude-3-5-sonnet-20240620"
-            --system-prompt "You are running inside ${{ github.repository }} on PR #${{ github.event.pull_request.number }}. When using GitHub MCP tools, ALWAYS include explicit parameters: owner='${{ github.repository_owner }}', repo='${{ github.event.repository.name }}', and pullNumber=${{ github.event.pull_request.number }}. Create a PR review with a summary and inline comments where applicable, then submit it. If nothing noteworthy, submit a review with body: 'No issues found in this PR.'"
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-
-      - name: Post review summary as PR comment
-        if: always()
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const fs = require('fs');
-            const path = process.env.EXEC_FILE;
-            let body = '';
-            try { if (path) body = fs.readFileSync(path, 'utf8'); } catch (e) {}
-            if (!body || !body.trim()) {
-              body = 'Claude auto-review completed but produced no visible output. Please check workflow logs.';
-            }
-            await github.rest.issues.createComment({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: context.payload.pull_request.number,
-              body,
-            });
-        env:
-          EXEC_FILE: ${{ steps.claude.outputs.execution_file }}
+            --allowedTools "mcp__github__get_pull_request,mcp__github__get_pull_request_diff,mcp__github__get_pull_request_files,mcp__github__create_pending_pull_request_review,mcp__github__add_comment_to_pending_review,mcp__github__submit_pending_pull_request_review"
