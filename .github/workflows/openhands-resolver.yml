@@ -200,7 +200,7 @@ jobs:
             const issueType = process.env.ISSUE_TYPE;
             const issueNumber = Number(process.env.ISSUE_NUMBER);
             if (!issueNumber) {
-              core.setFailed('ISSUE_NUMBER is not set');
+              console.log('ISSUE_NUMBER not set yet; skipping start comment');
             } else {
               await github.rest.issues.createComment({
                 issue_number: issueNumber,
