@@ -35,8 +35,8 @@ jobs:
         id: claude
         uses: anthropics/claude-code-action@v1
         with:
-          # Use PAT if provided; otherwise fall back to the default workflow token
-          github_token: ${{ secrets.PAT_TOKEN || github.token }}
+          # Use the default workflow token. Prefer this to avoid PAT expiry issues.
+          github_token: ${{ github.token }}
           # Pass Anthropic API key (required by the action)
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
           # Safer default model and tool allowlist
@@ -45,5 +45,5 @@ jobs:
             --model "claude-3-5-sonnet-20240620"
         env:
           # Also expose tokens via env for actions that read from env vars
-          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN || github.token }}
+          GITHUB_TOKEN: ${{ github.token }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
