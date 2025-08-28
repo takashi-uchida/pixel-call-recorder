@@ -13,15 +13,17 @@ on:
 jobs:
   claude:
     if: |
-      (github.event_name == 'issue_comment' && contains(github.event.comment.body, '@claude')) ||
-      (github.event_name == 'pull_request_review_comment' && contains(github.event.comment.body, '@claude')) ||
-      (github.event_name == 'pull_request_review' && contains(github.event.review.body, '@claude')) ||
-      (github.event_name == 'issues' && (contains(github.event.issue.body, '@claude') || contains(github.event.issue.title, '@claude')))
+      (
+        (github.event_name == 'issue_comment' && contains(github.event.comment.body, '@claude')) ||
+        (github.event_name == 'pull_request_review_comment' && contains(github.event.comment.body, '@claude')) ||
+        (github.event_name == 'pull_request_review' && contains(github.event.review.body, '@claude')) ||
+        (github.event_name == 'issues' && (contains(github.event.issue.body, '@claude') || contains(github.event.issue.title, '@claude')))
+      ) && (secrets.ANTHROPIC_API_KEY != '')
     runs-on: ubuntu-latest
     permissions:
-      contents: read
-      pull-requests: read
-      issues: read
+      contents: write
+      pull-requests: write
+      issues: write
       id-token: write
     steps:
       - name: Checkout repository
@@ -33,7 +35,15 @@ jobs:
         id: claude
         uses: anthropics/claude-code-action@v1
         with:
+          # Use PAT if provided; otherwise fall back to the default workflow token
+          github_token: ${{ secrets.PAT_TOKEN || github.token }}
+          # Pass Anthropic API key (required by the action)
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          # Safer default model and tool allowlist
           claude_args: |
             --allowedTools "Bash(bun install),Bash(bun test:*),Bash(bun run format),Bash(bun typecheck)"
-            --model "claude-opus-4-1-20250805"
+            --model "claude-3-5-sonnet-20240620"
+        env:
+          # Also expose tokens via env for actions that read from env vars
+          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN || github.token }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
