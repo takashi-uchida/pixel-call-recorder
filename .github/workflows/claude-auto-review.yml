@@ -38,9 +38,10 @@ jobs:
 
             Provide constructive feedback with specific suggestions for improvement.
             Use inline comments to highlight specific areas of concern.
-            Always post a brief summary comment on the PR with key findings.
+            Then create a GitHub PR review using the GitHub MCP tools with a general summary comment and submit the review. If there are no issues, still submit a review with the body: "No issues found in this PR." Do not skip submitting the review.
 
           claude_args: |
+            --allowedTools "mcp__github__create_pending_pull_request_review,mcp__github__add_comment_to_pending_review,mcp__github__submit_pending_pull_request_review,mcp__github__get_pull_request_diff"
             --model "claude-3-5-sonnet-20240620"
         env:
           GITHUB_TOKEN: ${{ github.token }}
