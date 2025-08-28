@@ -54,8 +54,9 @@ jobs:
         with:
           script: |
             const fs = require('fs');
+            const path = `${{ toJson(steps.claude.outputs.execution_file) }}`;
             let body = '';
-            try { body = fs.readFileSync(process.env.GITHUB_STEP_SUMMARY, 'utf8'); } catch (e) {}
+            try { if (path) body = fs.readFileSync(path, 'utf8'); } catch (e) {}
             if (!body || !body.trim()) {
               body = 'Claude auto-review completed but produced no visible output. Please check workflow logs.';
             }
