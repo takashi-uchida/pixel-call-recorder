@@ -42,7 +42,6 @@ jobs:
             Always post a brief summary comment on the PR with key findings.
 
           claude_args: |
-            --allowedTools "mcp__github__create_pending_pull_request_review,mcp__github__add_comment_to_pending_review,mcp__github__submit_pending_pull_request_review,mcp__github__get_pull_request_diff"
             --model "claude-3-5-sonnet-20240620"
         env:
           GITHUB_TOKEN: ${{ github.token }}
