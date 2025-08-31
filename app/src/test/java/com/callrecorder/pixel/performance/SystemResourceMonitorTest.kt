@@ -6,8 +6,11 @@ import android.os.Debug
 import android.os.Process
 import com.callrecorder.pixel.service.CallRecordingServiceImpl
 import com.callrecorder.pixel.audio.MediaRecorderAudioProcessor
+import com.callrecorder.pixel.TestUtils
 import io.mockk.mockk
 import io.mockk.every
+import kotlinx.coroutines.test.runTest
+import kotlinx.coroutines.delay
 import org.junit.Before
 import org.junit.Test
 import org.junit.Assert.*
@@ -28,26 +31,26 @@ class SystemResourceMonitorTest {
 
     @Before
     fun setUp() {
-        context = mockk()
+        context = TestUtils.getTestContext()
         activityManager = mockk()
         recordingService = mockk()
-        audioProcessor = MediaRecorderAudioProcessor()
+        audioProcessor = MediaRecorderAudioProcessor(context)
         
         every { context.getSystemService(Context.ACTIVITY_SERVICE) } returns activityManager
     }
 
     @Test
-    fun `監視 - 録音中のCPU使用率`() {
+    fun `監視 - 録音中のCPU使用率`() = runTest {
         val cpuUsageBeforeRecording = getCurrentCpuUsage()
         println("録音前CPU使用率: ${cpuUsageBeforeRecording}%")
         
         // 録音開始
-        audioProcessor.initializeAudioCapture()
-        val testFile = File.createTempFile("cpu_test", ".wav")
+        audioProcessor.initializeAudioCapture(TestUtils.getTestAudioQuality())
+        val testFile = TestUtils.createTestFile("cpu_test.wav")
         audioProcessor.startCapture(testFile)
         
         // 録音中のCPU使用率を測定
-        Thread.sleep(2000) // 2秒間録音
+        delay(2000) // 2秒間録音
         val cpuUsageDuringRecording = getCurrentCpuUsage()
         println("録音中CPU使用率: ${cpuUsageDuringRecording}%")
         

@@ -24,7 +24,8 @@ class AudioRecordProcessor(
 
     companion object {
         private const val TAG = "AudioRecordProcessor"
-        private const val AUDIO_SOURCE = MediaRecorder.AudioSource.VOICE_CALL
+        // Not a compile-time constant in Kotlin; keep as runtime val
+        private val AUDIO_SOURCE = MediaRecorder.AudioSource.VOICE_CALL
         private const val BUFFER_SIZE_MULTIPLIER = 4
         private const val MAX_16BIT_VALUE = 32767.0
     }

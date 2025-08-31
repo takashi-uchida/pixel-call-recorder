@@ -26,9 +26,10 @@ class MediaRecorderAudioProcessor(
 
     companion object {
         private const val TAG = "MediaRecorderAudioProcessor"
-        private const val AUDIO_SOURCE = MediaRecorder.AudioSource.VOICE_CALL
-        private const val OUTPUT_FORMAT = MediaRecorder.OutputFormat.MPEG_4
-        private const val AUDIO_ENCODER = MediaRecorder.AudioEncoder.AAC
+        // These refer to Android framework constants and are not Kotlin compile-time constants
+        private val AUDIO_SOURCE = MediaRecorder.AudioSource.VOICE_CALL
+        private val OUTPUT_FORMAT = MediaRecorder.OutputFormat.MPEG_4
+        private val AUDIO_ENCODER = MediaRecorder.AudioEncoder.AAC
         private const val MAX_AMPLITUDE_THRESHOLD = 32767.0
     }
 

@@ -40,14 +40,14 @@ abstract class CallRecorderDatabase : RoomDatabase() {
          * Adds indexes for better query performance
          */
         private val MIGRATION_1_2 = object : Migration(1, 2) {
-            override fun migrate(database: SupportSQLiteDatabase) {
+            override fun migrate(db: SupportSQLiteDatabase) {
                 Log.d(TAG, "Migrating database from version 1 to 2")
                 
                 // Add indexes for better query performance
-                database.execSQL("CREATE INDEX IF NOT EXISTS index_recordings_phoneNumber ON recordings(phoneNumber)")
-                database.execSQL("CREATE INDEX IF NOT EXISTS index_recordings_recordingDate ON recordings(recordingDate)")
-                database.execSQL("CREATE INDEX IF NOT EXISTS index_recordings_contactName ON recordings(contactName)")
-                database.execSQL("CREATE INDEX IF NOT EXISTS index_recordings_isIncoming ON recordings(isIncoming)")
+                db.execSQL("CREATE INDEX IF NOT EXISTS index_recordings_phoneNumber ON recordings(phoneNumber)")
+                db.execSQL("CREATE INDEX IF NOT EXISTS index_recordings_recordingDate ON recordings(recordingDate)")
+                db.execSQL("CREATE INDEX IF NOT EXISTS index_recordings_contactName ON recordings(contactName)")
+                db.execSQL("CREATE INDEX IF NOT EXISTS index_recordings_isIncoming ON recordings(isIncoming)")
                 
                 Log.d(TAG, "Database migration completed successfully")
             }
