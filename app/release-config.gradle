@@ -1,0 +1,60 @@
+// リリース設定ファイル
+// 実際のリリース時にはこのファイルを使用して署名設定を行います
+
+android {
+    signingConfigs {
+        release {
+            // 実際のリリース時に設定
+            // storeFile file('path/to/keystore.jks')
+            // storePassword 'store_password'
+            // keyAlias 'key_alias'
+            // keyPassword 'key_password'
+            
+            // 環境変数から取得する場合
+            // storeFile file(System.getenv("KEYSTORE_FILE") ?: "keystore.jks")
+            // storePassword System.getenv("KEYSTORE_PASSWORD")
+            // keyAlias System.getenv("KEY_ALIAS")
+            // keyPassword System.getenv("KEY_PASSWORD")
+        }
+    }
+    
+    buildTypes {
+        release {
+            // 署名設定の適用
+            // signingConfig signingConfigs.release
+            
+            // リリース固有の設定
+            manifestPlaceholders = [
+                app_name: "Pixel Call Recorder",
+                app_icon: "@mipmap/ic_launcher"
+            ]
+            
+            // バージョン管理
+            def versionPropsFile = file('version.properties')
+            if (versionPropsFile.canRead()) {
+                def Properties versionProps = new Properties()
+                versionProps.load(new FileInputStream(versionPropsFile))
+                
+                def versionMajor = versionProps['VERSION_MAJOR'].toInteger()
+                def versionMinor = versionProps['VERSION_MINOR'].toInteger()
+                def versionPatch = versionProps['VERSION_PATCH'].toInteger()
+                def versionBuild = versionProps['VERSION_BUILD'].toInteger()
+                
+                android.defaultConfig.versionCode = versionBuild
+                android.defaultConfig.versionName = "${versionMajor}.${versionMinor}.${versionPatch}"
+            }
+        }
+    }
+}
+
+// APK出力設定
+android.applicationVariants.all { variant ->
+    variant.outputs.all {
+        def date = new Date().format('yyyyMMdd')
+        def versionName = variant.versionName
+        def versionCode = variant.versionCode
+        def buildType = variant.buildType.name
+        
+        outputFileName = "PixelCallRecorder-${buildType}-v${versionName}-${versionCode}-${date}.apk"
+    }
+}

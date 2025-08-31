@@ -1,0 +1,42 @@
+# Android/Gradle
+.gradle/
+**/build/
+.externalNativeBuild/
+.cxx/
+captures/
+
+# Local SDK (project-scoped)
+.android-sdk/
+
+# Local configuration
+local.properties
+
+# IDE/editor
+.idea/
+*.iml
+*.ipr
+*.iws
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Keystores (do not commit signing material)
+*.jks
+*.keystore
+keystore.properties
+*.keystore.properties
+
+# Artifacts
+*.apk
+*.aar
+*.ap_
+
+# Java/Kotlin
+hs_err_pid*
+.kotlinc/
+
+# Gradle Wrapper note:
+# Do NOT ignore gradle/wrapper or gradlew; they should be committed
+# gradle/wrapper/gradle-wrapper.jar is intentionally tracked

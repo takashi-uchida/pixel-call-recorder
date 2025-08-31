@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Pixel Call Recorder</string>
+    <string name="app_description">Pixel 7 Pro用高品質通話録音アプリ</string>
+    <string name="app_version">1.0.0</string>
+    
+    <!-- Main Activity -->
+    <string name="start_recording">録音開始</string>
+    <string name="stop_recording">録音停止</string>
+    <string name="recording_status">録音状態</string>
+    <string name="not_recording">録音していません</string>
+    <string name="recording_in_progress">録音中...</string>
+    <string name="view_recordings">録音リスト</string>
+    <string name="settings">設定</string>
+    
+    <!-- Permissions -->
+    <string name="permission_required">権限が必要です</string>
+    <string name="microphone_permission_required">通話を録音するためにマイクの権限が必要です</string>
+    <string name="phone_permission_required">通話状態を検出するために電話の権限が必要です</string>
+    <string name="storage_permission_required">録音ファイルを保存するためにストレージの権限が必要です</string>
+    <string name="grant_permission">権限を許可</string>
+    <string name="permission_denied">権限が拒否されました</string>
+    
+    <!-- Recording List -->
+    <string name="no_recordings">録音ファイルがありません</string>
+    <string name="delete_recording">録音を削除</string>
+    <string name="share_recording">録音を共有</string>
+    <string name="play_recording">再生</string>
+    <string name="delete_confirmation">この録音を削除しますか？</string>
+    <string name="delete">削除</string>
+    <string name="cancel">キャンセル</string>
+    
+    <!-- Settings -->
+    <string name="recording_quality">録音品質</string>
+    <string name="high_quality">高品質</string>
+    <string name="standard_quality">標準</string>
+    <string name="space_saving">省容量</string>
+    
+    <!-- Notifications -->
+    <string name="recording_notification_title">通話録音中</string>
+    <string name="recording_notification_text">通話が録音されています</string>
+    <string name="recording_channel_name">通話録音</string>
+    <string name="recording_channel_description">通話録音サービスの通知</string>
+    
+    <!-- Errors -->
+    <string name="recording_failed">録音に失敗しました</string>
+    <string name="storage_full">ストレージ容量が不足しています</string>
+    <string name="audio_source_unavailable">音声ソースが利用できません</string>
+    
+    <!-- Additional UI strings -->
+    <string name="permission_status">権限状態</string>
+    <string name="microphone_permission">マイク権限</string>
+    <string name="phone_permission">電話権限</string>
+    <string name="storage_permission">ストレージ権限</string>
+    
+    <!-- App metadata -->
+    <string name="app_developer">Pixel Call Recorder Team</string>
+    <string name="app_copyright">© 2024 Pixel Call Recorder. All rights reserved.</string>
+    <string name="privacy_policy_url">https://example.com/privacy</string>
+    <string name="terms_of_service_url">https://example.com/terms</string>
+    
+    <!-- Feature descriptions -->
+    <string name="feature_high_quality_recording">高品質音声録音</string>
+    <string name="feature_automatic_enhancement">自動音声強化</string>
+    <string name="feature_pixel_optimization">Pixel 7 Pro最適化</string>
+    <string name="feature_secure_storage">安全なファイル管理</string>
+    
+    <!-- About -->
+    <string name="about_app">このアプリについて</string>
+    <string name="about_description">Pixel 7 Pro専用に最適化された高品質通話録音アプリです。Tensor G2チップの音声処理能力を活用し、クリアで聞き取りやすい録音を提供します。</string>
+    
+    <!-- Legal -->
+    <string name="legal_notice">法的注意事項</string>
+    <string name="recording_legal_warning">通話録音は法的制限がある場合があります。お住まいの地域の法律を確認し、相手の同意を得てから使用してください。</string>
+</resources>
