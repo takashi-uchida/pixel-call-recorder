@@ -27,7 +27,7 @@ jobs:
         uses: takashi-uchida/codex-github-actions@main
         with:
           trigger_prefix: ${{ vars.CODEX_TRIGGER || '@codex' }}
-          model:          ${{ vars.LLM_MODEL     || 'o4-mini' }}
+          model:          ${{ vars.LLM_MODEL     || 'gpt-4o-mini' }}
           mention_author: ${{ vars.MENTION_AUTHOR || true }}
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
