@@ -1,8 +1,16 @@
-# .github/workflows/on-comment.yml（呼び出し側リポジトリ）
-name: On Comment
+# .github/workflows/codex.yml - Codex CLI workflow
+# このファイルを .github/workflows/codex.yml に配置してください
+name: Codex CLI
+
 on:
   issue_comment:
     types: [created]
+  workflow_dispatch:
+    inputs:
+      command:
+        description: 'Codex CLI command to run'
+        required: true
+        type: string
 
 jobs:
   resolve:
@@ -12,6 +20,9 @@ jobs:
       pull-requests: write
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
       - name: Run Codex action
         uses: takashi-uchida/codex-github-actions@main
         with:
